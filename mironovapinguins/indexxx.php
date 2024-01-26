@@ -1,12 +1,12 @@
 <?php      
-    include "connect.php"; // выражение include включает и выполняет указанный файл 
+        include "connect.php"; // выражение include включает и выполняет указанный файл 
 
-    $query_get_category = "select * from categories"; 
+        $query_get_category = "select * from categories"; 
 
-    $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); //получение результата запроса из переменной query_get_category 
-    //и преобразуем его в двумерный массив, где каждый элемент это массив с построчным получением кортежей из таблицы результата запроса 
+        $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); //получение результата запроса из переменной query_get_category 
+        //и преобразуем его в двумерный массив, где каждый элемент это массив с построчным получением кортежей из таблицы результата запроса 
 
-    $news = mysqli_query($con, "select * from news");
+        $news = mysqli_query($con, "select * from news"); //ресурс подключения и запрос для нашей бд
 
     ?> 
 
@@ -57,18 +57,17 @@
     <div id="main">
     <div class="last-news">
     <?php 
-        while($new = mysqli_fetch_assoc($news)){ 
+        while($new = mysqli_fetch_assoc($news)){ //возвращает подстрочно одномерный ассоциативный массив из таблицы news
             echo "<div class='card'>"; 
             echo "<img src='imeges/news/".$new['image']."'>";
             echo "<h2 class='c_title'>" . $new['title'] . "</h2>"; 
             echo "<p>" . $new['content'] . "</p>"; 
+            
             echo "</div>"; 
         } 
     ?> 
 </div>
     </div>
-
-
     </body> 
 </html>
 <style>
