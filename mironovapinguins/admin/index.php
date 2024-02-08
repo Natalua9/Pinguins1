@@ -27,7 +27,9 @@
         <ul>
             <?php 
             foreach($news as $new ){
-                echo "<li> <a href='?new=" . $new[0] . "'>". $new[1]."</a></li>";
+                echo "<li> <a href='?new=" . $new[0] . "'>". $new[1]."</a>
+                <a href = 'deleteNew.php?new=" .  $new[0] ."'><img src ='/imeges/icons/trash.png' class='munys'> </a>
+                </li><hr>";
             }
             ?>
             <a href="/admin"><img src = "/imeges/icons/plus.png" class="plus_img"></a>
@@ -36,9 +38,12 @@
     <section class="col_2">
 
     <h2><?= $id_new?"Редактирование  №$id_new":"Создание новости";?></h2> 
-    <form action='<?= $id_new?"/update":"/create";?>NewValid' method="post" enctype="multipart/form-data">
+    <form action='<?= $id_new?"update":"create";?>NewValid.php' method="post" enctype="multipart/form-data">
     <div class="input-group">
     <?= $id_new?"<img src='/imeges/news/". $new_info['image'] . "' alt ='#' >": "";?>
+
+    <?= $id_new?"<input type = 'hidden' name = 'id' value = '$id_new' >": "";?>
+
     </div>
         <label for="newsCat">Категории:</label>
         <select id="newsCat" name="newsCat">
@@ -46,7 +51,7 @@
             foreach ($categories as $cat) {
                 $id_cat = $cat[0];
                 $name = $cat[1];
-$is_sel = ($id_cat == $new_info ['category_id'])? "selected" :'';
+                $is_sel = ($id_cat == $new_info ['category_id'])? "selected" :'';
 
                 echo "<option value ='$id_cat' " .($id_new ? $is_sel : '')." > $name </option>";
             }
@@ -97,6 +102,9 @@ a{
     width: 50px;
     height: 50px;
 }
-
+.munys{
+    width: 18px;
+    height: 18px;
+}
 
     </style>

@@ -1,4 +1,8 @@
-<?php $categories = mysqli_fetch_all(mysqli_query($con, "select * from categories")); ?>
+<?php
+include "Connect.php";
+$query_get_category = "select * from categories";
+$categories = mysqli_fetch_all(mysqli_query($con, $query_get_category));
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,6 +12,7 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
+
     <script src='main.js'></script>
 </head>
 
@@ -21,26 +26,29 @@
             </div>
 
             <div class="vhod">
-                <img src="imeges/1.svg" alt=""  class="poisc_img" >
-                <a href="#">Вход</a>
+                <img src="imeges/1.svg" alt="" class="poisc_img">
+                <a href="auto.php">Вход</a>/
+                <a href="reg.php">Регистрация</a>
+
             </div>
         </div>
         <div class="text-name">
-            <h1 class="namePost1">Пингвины</h1>
+            <h1 class="namePost1"><a href="/">Пингвины</a></h1>
             <h3>Понедельник, Январь 1, 2018</h3>
             <div class="pogoda">
-                <img src="imeges/Sun.svg" alt=""  class="poisc_img">
+                <img src="imeges/Sun.svg" alt="" class="poisc_img">
                 <h3>-23°C</h3>
             </div>
         </div>
     </header>
     <main>
         <div class="text-main">
-            <?php foreach ($categories as $category) {
-
-                echo "<li><a href='#'>$category[1]</a></li>";
-                echo "<hr>";
+            <?php
+            foreach ($categories as $category) {
+                echo "<li><a href='/?cat=$category[0]'>$category[1]</a></li>";
             }
+
+
             ?>
         </div>
     </main>

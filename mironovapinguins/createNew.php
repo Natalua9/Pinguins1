@@ -31,9 +31,7 @@
         <input type="file" id="newsImg" name="newsImg" accept="image/*"><br><br>
 
         <input type="submit" value="Отправить" class="submit-button">
+    
     </form>
-
-
     </body>
-
     </html>
