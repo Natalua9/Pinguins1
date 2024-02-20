@@ -22,7 +22,10 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category));
             <h2>Разделы</h2>
             <div class="searcch-block">
                 <img src="imeges/Search.svg" alt="" class="poisc_img">
-                <input type="text" placeholder=" Поиск" class="poisk">
+                <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Поиск...">
+    <button type="button" onclick="searchNews()">Искать</button>
+</form>
             </div>
 
             <div class="vhod">
@@ -43,12 +46,14 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category));
     </header>
     <main>
         <div class="text-main">
+            
             <?php
             foreach ($categories as $category) {
-                echo "<li><a href='/?cat=$category[0]'>$category[1]</a></li>";
+                echo "<li><a   href='/?cat=$category[0]'>$category[1]</a></li>";
             }
 
-
             ?>
+
         </div>
+        
     </main>
