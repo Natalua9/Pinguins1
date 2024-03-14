@@ -1,5 +1,6 @@
 <?php
 include "connect.php";
+session_start();
 $login = htmlspecialchars(trim($_POST['email']),ENT_QUOTES); //  htmlspecialchars- Преобразование специальных символов в HTML-сущности, trim убирает лишние пробелы
 // $name = htmlspecialchars(trim($_POST['username']), ENT_QUOTES);
 $password = htmlspecialchars(trim($_POST['password']),ENT_QUOTES); 
@@ -15,7 +16,7 @@ else if(count($user1) == 1){
 	exit();
 }
 
-setcookie('user', $user1['username'], time() + 3600, "/");//наименование, значение, срок действия, путь к дирректории
+$_SESSION["user"]= $user1['user_id'];//наименование, значение, срок действия, путь к дирректории
 
 header('Location: page.php');
 //mysql_fetch_array - это функция для построчного чтения полученного массива данных, возвращает ассоциативный массив где ключами являются поля таблицы Бд

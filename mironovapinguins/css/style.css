@@ -132,6 +132,13 @@ main {
   color: #3e3e3f;
   text-decoration: none;
 }
+.cards{
+  margin: 5% 0 5% 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+}
 
 .text-main {
   list-style-type: none;
@@ -277,4 +284,13 @@ img {
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+
+.Personal-cab{
+  text-align: center;
+}
+.pers-name{
+  font-size: 24px;
+
 }

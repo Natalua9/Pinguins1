@@ -21,4 +21,5 @@ if(!empty($user2)){//empty — Проверяет, пуста ли переме�
 	exit();
 }
 $insert = mysqli_query($con,"INSERT INTO `users` (`username`, `password`, `email`)VALUES('$name', '$pass','$login' )");
+$_SESSION["user_id"] = mysqli_insert_id($con);
 header('Location: auto.php');

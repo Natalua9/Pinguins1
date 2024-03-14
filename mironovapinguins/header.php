@@ -6,16 +6,22 @@
 include "Connect.php"; 
 $query_get_category = "select * from categories"; 
 $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); 
+session_start();
+$username = isset($_SESSION["user"]) ? mysqli_fetch_assoc(mysqli_query($con, 'select username from users where user_id =' . $_SESSION["user"]))["username"] : false;
+
 ?> 
 <!DOCTYPE html> 
 <html> 
- 
+
 <head> 
     <meta charset='utf-8'> 
     <meta http-equiv='X-UA-Compatible' content='IE=edge'> 
     <title>Page Title</title> 
     <meta name='viewport' content='width=device-width, initial-scale=1'> 
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
+
  
     <script src='main.js'></script> 
 </head> 
@@ -30,13 +36,19 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category));
                 <input type="search" id='search' name="search" placeholder="Поиск"> 
             </form> 
             </div> 
- 
-            <div class="vhod"> 
-                <img src="imeges/1.svg" alt="" class="poisc_img"> 
-                <a href="auto.php">Вход</a>/ 
-                <a href="reg.php">Регистрация</a> 
- 
-            </div> 
+     
+
+            <div class="vhod">
+            <?php if ($username) { ?>
+                <a href="/page.php" class="pers-name"><?= $username ?></a>
+            <?php } ?>
+                <?php if(!isset($_SESSION["user"])) { ?>
+                    <a href="auto.php">Вход</a>/<a href="reg.php">Регистрация</a>
+                <?php } else { ?>
+                    <a href="signout.php">Выход</a>
+                <?php } ?>
+            </div>
+                
         </div> 
         <div class="text-name"> 
             <h1 class="namePost1"><a href="/">Пингвины</a></h1> 
